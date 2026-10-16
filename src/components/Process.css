@@ -1,0 +1,461 @@
+/* ==========================================================================
+   PROCESS SECTION — INTERACTIVE SVG PATH PROGRESSION JOURNEY
+   ========================================================================== */
+
+.process-editorial-section {
+  position: relative;
+  background: #0A0A0A;
+  border-top: 1px solid #262626;
+  padding: 120px 0 140px;
+  overflow: hidden;
+  color: #F5F5F0;
+}
+
+.process-header {
+  margin-bottom: 64px;
+}
+
+.process-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #A1A1A1;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.process-title-row {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.process-display-title {
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1.3px;
+  line-height: 1.15;
+  color: #F5F5F0;
+  margin: 0;
+}
+
+.process-highlight {
+  color: #F5F5F0;
+  border-bottom: 2px solid #D8FF3E;
+  padding-bottom: 2px;
+}
+
+.process-lead-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #A1A1A1;
+  margin: 0;
+}
+
+/* ==========================================================================
+   INTERACTIVE PROCESS PATH JOURNEY STAGE
+   ========================================================================== */
+
+.process-journey-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* Continuous Background SVG Winding Path */
+.process-svg-canvas {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.process-bg-path {
+  fill: none;
+  stroke: #1e1e1e;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+.process-active-path {
+  fill: none;
+  stroke: #D8FF3E;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgba(216, 255, 62, 0.7));
+}
+
+/* Milestones Vertical Cascade */
+.process-milestones-list {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* Single Process Milestone Card */
+.process-milestone-item {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  position: relative;
+}
+
+/* Alternating Left / Right alignment */
+.process-milestone-item.align-left .milestone-card {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+}
+
+.process-milestone-item.align-left .milestone-meta-strip {
+  justify-content: flex-end;
+}
+
+.process-milestone-item.align-left .milestone-deliverable-chip {
+  align-self: flex-end;
+}
+
+.process-milestone-item.align-right .milestone-card {
+  grid-column: 3;
+  justify-self: start;
+  text-align: left;
+}
+
+.process-milestone-item.align-right .milestone-meta-strip {
+  justify-content: flex-start;
+}
+
+.process-milestone-item.align-right .milestone-deliverable-chip {
+  align-self: flex-start;
+}
+
+/* Central Waypoint Node Indicator */
+.milestone-waypoint {
+  grid-column: 2;
+  justify-self: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #111111;
+  border: 2px solid #262626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  color: #666666;
+  transition: all 0.4s ease;
+  z-index: 5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.milestone-waypoint.is-active {
+  border-color: #D8FF3E;
+  background: #181d11;
+  color: #D8FF3E;
+  transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(216, 255, 62, 0.4);
+}
+
+.milestone-waypoint.is-completed {
+  border-color: #444444;
+  background: #1c1c1c;
+  color: #ffffff;
+}
+
+/* Milestone Card Surface */
+.milestone-card {
+  width: 100%;
+  max-width: 420px;
+  background: #111111;
+  border: 1px solid #262626;
+  border-radius: 14px;
+  padding: 26px 30px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.milestone-card.is-active {
+  border-color: #3d3d3d;
+  background: #141414;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(216, 255, 62, 0.05);
+}
+
+.milestone-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.milestone-status-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.milestone-status-badge.waiting {
+  background: #161616;
+  border: 1px solid #262626;
+  color: #666666;
+}
+
+.milestone-status-badge.active {
+  background: rgba(216, 255, 62, 0.12);
+  border: 1px solid #D8FF3E;
+  color: #D8FF3E;
+  box-shadow: 0 0 10px rgba(216, 255, 62, 0.25);
+}
+
+.milestone-status-badge.completed {
+  background: #1b1b1b;
+  border: 1px solid #383838;
+  color: #888888;
+}
+
+.milestone-step-index {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  color: #D8FF3E;
+}
+
+.milestone-title {
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #F5F5F0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.milestone-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #A1A1A1;
+  margin: 0;
+}
+
+.milestone-deliverable-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #181818;
+  border: 1px solid #292929;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #c4c4be;
+  margin-top: 4px;
+}
+
+.deliverable-bullet {
+  color: #D8FF3E;
+  font-size: 8px;
+}
+
+/* Desktop / Mobile SVG visibility */
+.process-svg-canvas.desktop-svg {
+  display: block;
+}
+
+.process-svg-canvas.mobile-svg {
+  display: none;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE ADAPTATION
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .process-editorial-section {
+    padding: 70px 0 90px;
+  }
+
+  .process-title-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .process-display-title {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .process-journey-stage {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .process-svg-canvas.desktop-svg {
+    display: none;
+  }
+
+  .process-svg-canvas.mobile-svg {
+    display: block;
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 20px;
+    width: 4px;
+    height: calc(100% - 48px);
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .process-milestones-list {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .process-milestone-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    position: relative;
+  }
+
+  .milestone-waypoint {
+    display: flex;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 11px;
+    z-index: 3;
+    position: relative;
+    background: #111111;
+  }
+
+  .process-milestone-item.align-left .milestone-card,
+  .process-milestone-item.align-right .milestone-card {
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+    padding: 20px 22px;
+  }
+
+  .process-milestone-item.align-left .milestone-meta-strip,
+  .process-milestone-item.align-right .milestone-meta-strip {
+    justify-content: flex-start;
+  }
+
+  .process-milestone-item.align-left .milestone-deliverable-chip,
+  .process-milestone-item.align-right .milestone-deliverable-chip {
+    align-self: flex-start;
+  }
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES FOR PROCESS SECTION
+   ========================================================================== */
+[data-theme="light"] .process-editorial-section {
+  background: #F8FAFC;
+  border-top-color: #E2E8F0;
+  color: #0F172A;
+}
+
+[data-theme="light"] .process-display-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .process-highlight {
+  color: #0F172A;
+  border-bottom-color: #0284C7;
+}
+
+[data-theme="light"] .process-lead-text {
+  color: #475569;
+}
+
+[data-theme="light"] .process-bg-path {
+  stroke: #E2E8F0;
+}
+
+[data-theme="light"] .process-active-path {
+  stroke: #0284C7;
+  filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.45));
+}
+
+[data-theme="light"] .milestone-card {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .milestone-card.active {
+  border-color: #0284C7;
+  box-shadow: 0 14px 40px rgba(2, 132, 199, 0.12);
+  background: #FFFFFF;
+}
+
+[data-theme="light"] .milestone-step-badge {
+  color: #0284C7;
+}
+
+[data-theme="light"] .milestone-title-heading {
+  color: #0F172A;
+}
+
+[data-theme="light"] .milestone-desc-copy {
+  color: #475569;
+}
+
+[data-theme="light"] .milestone-deliverable-chip {
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+}
+
+[data-theme="light"] .chip-label {
+  color: #64748B;
+}
+
+[data-theme="light"] .chip-value {
+  color: #0F172A;
+}
+
+[data-theme="light"] .milestone-waypoint {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+  color: #64748B;
+}
+
+[data-theme="light"] .milestone-waypoint.active {
+  background: #0284C7;
+  border-color: #0284C7;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
+}
