@@ -13,21 +13,16 @@ import './App.css'
 
 function App() {
   const [isNotFound, setIsNotFound] = useState(false)
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('portfolio-theme')
-    if (saved) return saved
-    return 'dark'
-  })
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    document.documentElement.style.colorScheme = theme
-    localStorage.setItem('portfolio-theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
-  }
+    document.documentElement.setAttribute('data-theme', 'dark')
+    document.documentElement.style.colorScheme = 'dark'
+    try {
+      localStorage.removeItem('portfolio-theme')
+    } catch {
+      // ignore
+    }
+  }, [])
 
   useEffect(() => {
     const checkRoute = () => {
@@ -53,12 +48,12 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className="portfolio-app" data-theme={theme}>
+      <div className="portfolio-app" data-theme="dark">
         {isNotFound ? (
           <NotFound onGoHome={handleGoHome} />
         ) : (
           <>
-            <Navbar theme={theme} onToggleTheme={toggleTheme} />
+            <Navbar />
             <main>
               <Hero />
               <About />

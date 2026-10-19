@@ -1058,6 +1058,15 @@
     overflow: hidden;
     border: 1px solid #222222;
     cursor: pointer;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mobile-card-preview > .project-canvas {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .mobile-card-desc {
